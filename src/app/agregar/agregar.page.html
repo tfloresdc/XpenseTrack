@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/wallet"></ion-back-button>
+    </ion-buttons>
+    <ion-title slot="end">Añade una transacción</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Tipo de transacción:</ion-label>
+      <ion-select [(ngModel)]="transactionType">
+        <ion-select-option value="ingreso">Ingreso</ion-select-option>
+        <ion-select-option value="gasto">Gasto</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Monto:</ion-label>
+      <ion-input type="number" placeholder="0.00" [(ngModel)]="amount"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Descripción:</ion-label>
+      <ion-input type="text" placeholder="Ej. Regalo, Supermercado, Sueldo, etc." [(ngModel)]="description"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Fecha:</ion-label>
+      <ion-datetime presentation="date" [(ngModel)]="date"></ion-datetime>
+    </ion-item>
+  </ion-list>
+
+  <ion-item-divider>
+    <ion-label color="dark">Icono:</ion-label>
+  </ion-item-divider>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let icon of availableIcons">
+        <ion-button fill="clear" (click)="selectIcon(icon)" [class.selected]="selectedIcon === icon">
+          <ion-icon [name]="icon" slot="icon-only" size="large"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div class="ion-padding">
+    <ion-button expand="block" (click)="addTransaction()">Crear transacción</ion-button>
+  </div>
+
+</ion-content>

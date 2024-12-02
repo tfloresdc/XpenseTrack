@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title slot="end">Indicadores económicos</ion-title>
+    
+    <ion-buttons slot="end">
+      <ion-button (click)="newIndicatorAlert()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div *ngIf="isLoading">
+    <ion-skeleton-text animated style="width: 60%; height: 25px; margin-bottom: 10px;"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 90%; height: 60px; margin-bottom: 15px;"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 90%; height: 60px; margin-bottom: 15px;"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 90%; height: 60%;"></ion-skeleton-text>
+  </div>
+
+  <ion-card *ngIf="error" color="danger">
+    <ion-card-header>
+      <ion-card-title>Ocurrió un error :(</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>No se pudieron cargar los indicadores. Por favor, intenta nuevamente.</ion-card-content>
+  </ion-card>
+
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="6" *ngFor="let item of items">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>{{ item.codigo }}</ion-card-subtitle>
+            <ion-card-title>{{ item.nombre }}</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <div class="indicator-value">
+              <span class="value">{{ item.valor | number:'1.0-2' }}</span>
+              <span class="unit">{{ item.unidad_medida }}</span>
+            </div>
+
+            <div class="fecha" *ngIf="item.fecha">
+              <ion-note>
+                Actualizado: {{ item.fecha | date:'dd/MM/yyyy' }}
+              </ion-note>
+            </div>
+          </ion-card-content>
+
+
+          <ion-row>
+            <ion-col size="auto">
+              <ion-button fill="clear" (click)="updateIndicatorAlert(item)">
+                <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+              </ion-button>
+            </ion-col>
+            <ion-col size="auto">
+              <ion-button fill="clear" color="danger" (click)="deleteConfirmation(item)">
+                <ion-icon name="trash-bin" slot="icon-only"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+
+</ion-content>

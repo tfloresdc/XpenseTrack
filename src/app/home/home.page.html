@@ -1,0 +1,60 @@
+<!-- Menu conceptual -->
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title class="custom-title-menu">Menú principal</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <ion-item routerLink="/wallet">
+        <ion-icon name="wallet-sharp" class="ion-margin-end"></ion-icon>
+        Billetera
+      </ion-item>
+
+      <ion-item routerLink="/indicadores">
+        <ion-icon name="bar-chart-sharp" class="ion-margin-end"></ion-icon>
+        Indicadores económicos
+      </ion-item>
+
+      <ion-item routerLink="/config">
+        <ion-icon name="hammer-sharp" class="ion-margin-end"></ion-icon>
+        Configuración
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+ <!-- Contenido principal -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/datos">
+        <ion-icon slot="icon-only" name="person-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title class="custom-title">XpenseTrack</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" id="main-content">
+
+  <div class="ion-page">
+    <p>Bienvenido</p>
+
+    <ion-button expand="full">
+      Abrir cámara
+    </ion-button>
+    <ion-button expand="full">
+      Ver mapa
+    </ion-button>
+
+  </div>
+</ion-content>

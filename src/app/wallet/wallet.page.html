@@ -1,0 +1,77 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title slot="end">Billetera</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Tu balance actual:</ion-card-subtitle>
+      <ion-card-title class="ion-text-center">{{ balance | currency }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" color="success" (click)="goToAddTransaction('ingreso')">
+            <ion-icon slot="start" name="add-circle"></ion-icon>
+            Ingreso
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" color="danger" (click)="goToAddTransaction('gasto')">
+            <ion-icon slot="start" name="remove-circle-outline"></ion-icon>
+            Gasto
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-segment [(ngModel)]="currentSegment" (ionChange)="segmentChanged()">
+    <ion-segment-button value="all">
+      <ion-label>Todos</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="ingreso">
+      <ion-label>Ingresos</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="gasto">
+      <ion-label>Gastos</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label>{{ headerText }}</ion-label>
+    </ion-list-header>
+    <ion-item-sliding *ngFor="let transaction of filteredTransactions; let i = index">
+      <ion-item>
+        <ion-icon slot="start" [name]="transaction.icon" [color]="transaction.type === 'ingreso' ? 'success' : 'danger'"></ion-icon>
+        <ion-label>
+          <h2> {{ transaction.description }} </h2>
+          <p> {{ transaction.date | date:'medium' }} </p>
+        </ion-label>
+        <ion-note slot="end" [color]="transaction.type === 'ingreso' ? 'success' : 'danger'">
+          {{ transaction.type === 'ingreso' ? '+' : '-' }} {{ transaction.amount | currency }}
+        </ion-note>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="deleteTransaction(transaction, i)">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="goToAddTransaction()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+</ion-content>

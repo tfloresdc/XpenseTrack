@@ -1,0 +1,39 @@
+<ion-content>
+  <ion-card class="login-card">
+    <ion-card-header>
+      <ion-card-title>XT</ion-card-title>
+    </ion-card-header>
+    <ion-card-subtitle>Completa los campos para iniciar sesión</ion-card-subtitle>
+
+    <ion-card-content>
+
+      <form>
+        
+        <ion-input type="text" class="ion-margin-top" label="Usuario:"
+        fill="outline" placeholder="Ingresa tu nombre de usuario"
+        name="username" minlength="3" maxlength="8" [counter]="true"
+        [clearInput]="true" required></ion-input>
+
+        <ion-input type="password" class="ion-margin-top" label="Contraseña:"
+        fill="outline" placeholder="Ingresa tu contraseña"
+        name="password" minlength="4" maxlength="4" [counter]="true"
+        [clearOnEdit]="true" required></ion-input>
+
+        <div class="custom-buttons">
+          <ion-button color="primary">Iniciar sesión</ion-button>
+          <ion-button color="secondary" routerLink="/register">Crear cuenta</ion-button>
+        </div>
+      </form>
+
+      <ion-button class="ion-margin-top" expand="block" color="dark" (click)="fillTestUser()">Rellenar con usuario de prueba</ion-button>
+      <div class="otras-opciones">
+        <ion-button fill="clear" size="small" color="medium">
+          <ion-icon name="key-outline" slot="end" size="icon-only"></ion-icon>
+          Olvidaste tu contraseña?
+        </ion-button>
+      </div>
+    </ion-card-content>
+    
+  </ion-card>
+
+</ion-content>

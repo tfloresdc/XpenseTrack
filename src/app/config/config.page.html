@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title slot="end">Modifica la configuración</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-top">
+
+  <ion-list>
+    <ion-item>
+      <ion-label>
+        <h2>Color de la app:</h2>
+        <p>Con esto cambiarás el color de algunos elementos</p>
+      </ion-label>
+      <ion-select [(ngModel)]="selectedColor" (ionChange)="changeColor()">
+        <ion-select-option *ngFor="let color of availableColors" [value]="color.value">
+          {{color.name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <h2>Modo oscuro:</h2>
+        <p>Con esto cambiarás el tema de la aplicación a oscuro</p>
+      </ion-label>
+      <ion-toggle [(ngModel)]="isDarkMode" (ionChange)="toggleDarkMode()"></ion-toggle>
+    </ion-item>
+
+
+
+  </ion-list>
+</ion-content>
