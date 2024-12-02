@@ -1,0 +1,16 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Cámara</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  
+  <ion-button expand="full" (click)="takePicture()">Tomar fotografía</ion-button>
+
+  <div *ngIf="photo">
+    <h2>Vista previa</h2>
+    <img [src]="photo" alt="Foto tomada" style="width: 100%; margin-top: 20px;">
+  </div>
+</ion-content>
